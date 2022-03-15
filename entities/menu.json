@@ -1,0 +1,25 @@
+{ 
+    "name": "menu", 
+    "columns": { 
+       "id": { 
+          "primary": true, 
+          "type": "int", 
+          "generated": true 
+       }, 
+        "client_id":{
+               "type":"int"
+        },
+        "role_id":{
+            "type":"int"
+        },
+        "display_text": { 
+            "type": "varchar" 
+        },
+        "logical_path":{
+            "type":"varchar"
+        },
+        "sort_order":{
+            "type":"int"
+        }
+    } 
+ }

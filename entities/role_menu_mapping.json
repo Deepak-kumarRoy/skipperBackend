@@ -1,0 +1,16 @@
+{ 
+    "name": "role_menu_mapping", 
+    "columns": { 
+       "id": { 
+          "primary": true, 
+          "type": "int", 
+          "generated": true 
+       }, 
+        "menu_id":{
+               "type":"int"
+        },
+        "role_id":{
+            "type":"int"
+        }
+    } 
+ }

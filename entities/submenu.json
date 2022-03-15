@@ -1,0 +1,22 @@
+{ 
+    "name": "submenu", 
+    "columns": { 
+       "id": { 
+          "primary": true, 
+          "type": "int", 
+          "generated": true 
+       }, 
+        "menu_id":{
+               "type":"int"
+        },
+        "display_text": { 
+            "type": "varchar" 
+        },
+        "logical_path":{
+            "type":"varchar"
+        },
+        "sort_order":{
+            "type":"int"
+        }
+    } 
+ }

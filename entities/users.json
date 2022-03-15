@@ -1,0 +1,40 @@
+{ 
+    "name": "users", 
+    "columns": { 
+       "id": { 
+          "primary": true, 
+          "type": "int", 
+          "generated": true 
+       }, 
+        "client_id":{
+               "type":"int"
+        },
+        "user_id":{
+            "type":"varchar"
+        },
+        "password": { 
+            "type": "varchar" 
+        },
+        "firstname":{
+            "type":"varchar"
+        },
+        "lastname":{
+            "type":"varchar"
+        },
+        "country":{
+            "type":"char"
+        },
+        "langu":{
+            "type":"char"
+        },
+       "email_id": { 
+          "type": "varchar" 
+       },
+       "contact_no":{
+           "type":"varchar"
+       },
+       "status":{
+           "type":"char"
+       }
+    } 
+ }
