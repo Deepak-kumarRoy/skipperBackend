@@ -1,0 +1,46 @@
+{ 
+    "name": "wf_instance", 
+    "columns": { 
+       "id": { 
+          "primary": true, 
+          "type": "int", 
+          "generated": true 
+       }, 
+        "client_id":{
+            "type":"int"
+        },
+        "wf_id":{
+            "type":"int"
+        },
+        "requester_id": { 
+            "type": "int" 
+        },
+        "curr_user":{
+            "type":"int"
+        },
+        "curr_step":{
+            "type":"smallint"
+        },
+        "start":{
+            "type":"timestamp"
+        },
+        "wf_data":{
+            "type":"jsonb"
+        },
+       "comment": { 
+          "type": "varchar" 
+       },
+       "files":{
+           "type":"varchar"
+       },
+       "wf_end":{
+           "type":"timestamp"
+       },
+       "wf_status":{
+        "type":"varchar"
+       },
+       "dode":{
+           "type":"timestamp"
+       }
+    } 
+ }

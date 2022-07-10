@@ -1,0 +1,16 @@
+{ 
+    "name": "client", 
+    "columns": { 
+       "id": { 
+          "primary": true, 
+          "type": "int", 
+          "generated": true 
+       }, 
+        "cint":{
+               "type":"varchar"
+        },
+        "client_desc":{
+            "type":"varchar"
+        }
+    } 
+ }

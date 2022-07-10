@@ -1,0 +1,31 @@
+{ 
+    "name": "wf", 
+    "columns": { 
+       "id": { 
+          "primary": true, 
+          "type": "int", 
+          "generated": true 
+       }, 
+        "client_id":{
+               "type":"int"
+        },
+        "wf_name":{
+            "type":"varchar"
+        },
+        "descr": { 
+            "type": "varchar" 
+        },
+        "dode":{
+            "type":"timestamp"
+        },
+        "w_status":{
+            "type":"char"
+        },
+        "pause":{
+            "type":"char"
+        },
+        "parent":{
+            "type":"int"
+        }
+    } 
+ }

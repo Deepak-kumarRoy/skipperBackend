@@ -8,10 +8,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const app = express();
 const login_table = "users";
-const menu_table = "menu";
-const submenu_table = "submenu";
-const role_menu_mapping_table = "role_menu_mapping";
-const user_role_mapping_table = "user_role_mapping";
+const role_table = "role";
 
 
 router.use(bodyParser.json())
@@ -23,6 +20,16 @@ router.use(cors({
 
 }))
 
+/**
+* Description: '/check' endpoint is just for checking the backend structure if everything is working fine or not (testing api)
+* Params: No params
+* Body: No body
+* Created By: Deepak
+* Created At:
+* Updated By: Deepak
+* Updated At: 
+**/
+
 router.get('/check', async (req, res) => {
     const connection = typeorm.getConnection();
 
@@ -33,6 +40,16 @@ router.get('/check', async (req, res) => {
         result
     })
 })
+
+/**
+* Description: '/signup' endpoint is for creating new user in the application
+* Params: No params
+* Body: No body
+* Created By: Deepak
+* Created At:
+* Updated By: Deepak
+* Updated At: 
+**/
 
 router.post('/signup', async (req, res) => {
     const connection = typeorm.getConnection();
@@ -61,6 +78,16 @@ router.post('/signup', async (req, res) => {
 
 });
 
+/**
+* Description: '/login' endpoint is for login
+* Params: No params
+* Body: No body
+* Created By: Deepak
+* Created At:
+* Updated By: Deepak
+* Updated At: 
+**/
+
 router.post('/login', async (req, res) => {
     const connection = typeorm.getConnection();
 
@@ -69,45 +96,53 @@ router.post('/login', async (req, res) => {
     const accessToken = jwt.sign({ email_id: req.body.email_id }, process.env.JWT_SECRET, async (err, token) => {
 
         let userLogin = await result.findOne({ email_id: req.body.email_id, client_id: req.body.client_id });
-        
 
         if (userLogin === undefined) {
             res.send({
                 "Message": "invalid credentials"
             })
         }
-         else {
+        else {
             var pass = await bcrypt.compare(req.body.password, userLogin.password)
-           
-            const data =  await connection.getRepository(role_menu_mapping_table)
-            .createQueryBuilder('rm')
-            .innerJoinAndSelect("user_role_mapping", "us","us.role_id = rm.role_id")
-            .innerJoinAndSelect("menu", "m","m.id = rm.menu_id")
-            .innerJoinAndSelect("submenu", "sm","m.id = sm.menu_id")
-            .where ("us.user_id = :idx",{idx:userLogin.id})
+
+            let id = await connection.getRepository(login_table)
+            .createQueryBuilder("d")
+            .innerJoinAndSelect("user_role_mapping", "e", "d.id = e.user_id")
+            .where("d.user_id = :idx", { idx: userLogin.user_id })
+            .getRawOne();
+
+        let user = id.e_role_id;
+        let menu = await connection.getRepository(role_table)
+            .createQueryBuilder("b")
+            .innerJoinAndSelect("role_menu_mapping", "c", "b.id = c.role_id")
+            .innerJoinAndSelect("menu", "a", "a.id = c.menu_id")
+            .where("c.role_id = :idx", { idx: user })
+            .getRawMany();
+            let submenu = await connection.getRepository(role_table)
+            .createQueryBuilder("b")
+            .innerJoinAndSelect("role_menu_mapping", "c", "b.id = c.role_id")
+            .innerJoinAndSelect("menu", "a", "a.id = c.menu_id")
+            .innerJoinAndSelect("submenu", "d", "a.id = d.menu_id")
+            .where("c.role_id = :idx", { idx: user })
             .getRawMany();
 
-                console.log(data)
 
             if (pass === false) {
                 res.send({
                     "Message": "password is wrong"
                 })
-            } else
-             {
+            } else {
                 res.status(200).json({
                     userLogin,
-                    data,
+                    data: menu,
+                    submenu: submenu,
                     accessToken: token
                 })
             }
         }
     });
 })
-router.post('/formdata', async (req, res) => {
-    const connection = typeorm.getConnection();
-    var result = await connection.getRepository(login_table)
 
-})
+
 
 module.exports = router;

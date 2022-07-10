@@ -27,7 +27,12 @@ var connection = typeorm.createConnection({
         new EntitySchema(require("./entities/menu.json")),
         new EntitySchema(require("./entities/submenu.json")),
         new EntitySchema(require("./entities/role_menu_mapping.json")),
-        new EntitySchema(require("./entities/user_role_mapping.json"))
+        new EntitySchema(require("./entities/user_role_mapping.json")),
+        new EntitySchema(require("./entities/wf_instance.json")),
+        new EntitySchema(require("./entities/wf.json")),
+        new EntitySchema(require("./entities/wf_steps.json")),
+        new EntitySchema(require("./entities/wf_task.json")),
+        new EntitySchema(require("./entities/role.json"))
     ]
 }).then(function (connection) {
 
@@ -39,5 +44,7 @@ var connection = typeorm.createConnection({
     console.log("Error: ", error)
     return;
 });
+
+
 
 module.exports = connection;

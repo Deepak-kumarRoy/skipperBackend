@@ -1,0 +1,35 @@
+{ 
+    "name": "wf_steps", 
+    "columns": { 
+       "id": { 
+          "primary": true, 
+          "type": "int", 
+          "generated": true 
+       }, 
+        "wf_id":{
+               "type":"int"
+        },
+        "step_name":{
+            "type":"varchar"
+        },
+        "step_descr": { 
+            "type": "varchar" 
+        },
+        "step_num":{
+            "type":"smallint"
+        },
+        "assignto_role":{
+            "type":"int"
+        },
+        "assignto_user":{
+            "type":"int"
+        },
+        "timeframe":{
+            "type":"smallint"
+        },
+        "dode":{
+            "type":"timestamp"
+        }
+
+    } 
+ }

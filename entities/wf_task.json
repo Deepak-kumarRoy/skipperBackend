@@ -1,0 +1,37 @@
+{ 
+    "name": "wf_task", 
+    "columns": { 
+       "id": { 
+          "primary": true, 
+          "type": "int", 
+          "generated": true 
+       }, 
+        "client_code":{
+               "type":"varchar"
+        },
+        "wf_instance_id":{
+            "type":"int"
+        },
+        "wf_step_id": { 
+            "type": "int" 
+        },
+        "assigned_user":{
+            "type":"int"
+        },
+        "start":{
+            "type":"timestamp"
+        },
+        "task_end":{
+            "type":"timestamp"
+        },
+        "comment":{
+            "type":"varchar"
+        },
+        "task_status":{
+            "type":"varchar"
+        },
+        "dode":{
+            "type":"timestamp"
+        }
+    } 
+ }

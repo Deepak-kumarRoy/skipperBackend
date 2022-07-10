@@ -1,0 +1,19 @@
+{ 
+    "name": "role", 
+    "columns": { 
+       "id": { 
+          "primary": true, 
+          "type": "int", 
+          "generated": true 
+       }, 
+        "client_id":{
+               "type":"int"
+        },
+        "role_key":{
+            "type":"char"
+        },
+        "role_desc":{
+            "type":"varchar"
+        }
+    } 
+ }
